@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{% block title %}{% endblock %}</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'css/main.css' %}">
+</head>
+<body>
+	<div id="wrapper">
+		<header>
+			<div id="greetings">
+				<h1>Hello. I'm Kirill Smirnov.</h1>
+				<h2>I'm JavaScript and Python developer.
+				<br>
+				And this is my blog.</h2>
+			</div>
+				{% block additions %} {% endblock %}
+		</header>
+		{% block content %}{% endblock %}
+		</div>
+</body>
+</html>

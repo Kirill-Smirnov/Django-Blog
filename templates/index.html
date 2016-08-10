@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ title }} {% endblock %}
+
+{% block additions %} {% include 'includes/search.html' %} {% endblock %}
+
+{% block content %}
+	{% for post in posts %}
+		{% include 'includes/post.html' %}
+		{% empty %}
+			<div class="post">
+				<h1 class="post__no_posts">There are no any posts.</h1>
+			</div>
+	{% endfor %}
+{% endblock %}

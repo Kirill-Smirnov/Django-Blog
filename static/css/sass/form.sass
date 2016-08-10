@@ -1,0 +1,33 @@
+/* Django generates the forms and I can't set any classes or IDs */
+
+@import 'constants'
+
+.form
+	margin: 0
+	padding: 0
+	input[type='text']
+		height: 20px
+
+	textarea
+		resize: none
+
+	input[type='text'], textarea
+		float: right
+		width: 70%
+		font-size: 18px
+
+	p:after
+		content: ""
+		display: table
+		clear: both
+
+input[type='submit'], button
+	height: 30px
+	background-color: $background-post
+	border: darken($background-post,  15%) solid 1px
+	cursor: pointer
+	font-weight: bold
+	transition: all 0.3s ease-in-out
+
+	&:hover
+		background-color: darken($background-post,  15%)

@@ -1,0 +1,15 @@
+<div class="post">
+	<div class="row">
+		<a href="/post/{{ post.id }}" class="col-8">
+			<h1 class="post__title">{{ post.title }}</h1>
+		</a>
+		<p class="post__time">{{ post.created_at|date:"d-m-Y" }}</p>
+		<span class="icon icon-close clickable">X</span>
+	</div>
+	<p class="post__content">{{ post.content }}</p>
+	<p class="post__tags"> Tags:
+		{% for tag in post.get_tags %}
+			<span class="post__tag"><a href="/tag/{{ tag }}">{{ tag }}</a> </span>
+		{% endfor %}
+	</p>
+</div>
