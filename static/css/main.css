@@ -11,7 +11,14 @@
   cursor: pointer; }
 
 .icon {
-  display: block; }
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 0 3px;
+  background-size: cover;
+  background-position: center center; }
+  .icon.icon-close {
+    background-image: url("../img/close.png"); }
 
 .col-* {
   margin: 0;
@@ -102,21 +109,26 @@ a {
   margin: 0 auto; }
   #wrapper #greetings {
     margin: 20px auto; }
-  #wrapper .post {
-    background-color: #dedede;
-    padding: 10px 20px;
-    box-shadow: 1px 1px 3px #333; }
-    #wrapper .post h1 {
-      text-align: left;
-      font-weight: normal; }
-    #wrapper .post .post__time {
-      margin: 0 5px; }
-    #wrapper .post .post__content {
-      margin: 15px 0; }
-    #wrapper .post .post__tags {
-      margin: 0; }
-    #wrapper .post .post__no_posts {
-      text-align: center; }
+
+.post {
+  background-color: #dedede;
+  padding: 10px 20px;
+  box-shadow: 1px 1px 3px #333; }
+  .post h1.post__title {
+    text-decoration: underline;
+    text-align: left;
+    font-weight: normal;
+    display: inline; }
+  .post .post__time {
+    margin: 0 5px; }
+  .post .post__content {
+    margin: 15px 0; }
+  .post .post__tags {
+    margin: 0; }
+  .post .post__username {
+    text-align: right; }
+  .post .post__no_posts {
+    text-align: center; }
 
 #search_form {
   margin: 10px auto;

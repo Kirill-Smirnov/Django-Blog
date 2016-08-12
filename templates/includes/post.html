@@ -1,15 +1,23 @@
 <div class="post">
 	<div class="row">
-		<a href="/post/{{ post.id }}" class="col-8">
-			<h1 class="post__title">{{ post.title }}</h1>
-		</a>
-		<p class="post__time">{{ post.created_at|date:"d-m-Y" }}</p>
-		<span class="icon icon-close clickable">X</span>
+		<h1 class="post__title col-10">
+			<span class="post__id">{{ post.id }}</span>.
+			<a href="/post/{{ post.id }}">{{ post.title }}</a>
+		</h1>
+		{% if request.user.is_staff %}
+			<span class="icon icon-close clickable post__delete" ></span>
+		{% endif %}
 	</div>
 	<p class="post__content">{{ post.content }}</p>
-	<p class="post__tags"> Tags:
-		{% for tag in post.get_tags %}
-			<span class="post__tag"><a href="/tag/{{ tag }}">{{ tag }}</a> </span>
-		{% endfor %}
-	</p>
+	<div class="row">
+		<p class="post__tags col-8"> Tags:
+			{% for tag in post.get_tags %}
+				<span class="post__tag"><a href="/tag/{{ tag }}">{{ tag }}</a> </span>
+			{% endfor %}
+		</p>
+		<div class="col-4">
+			<span class="post__username">By {{ post.username }}</span>
+			<span class="post__time">on {{ post.created_at|date:"d-m-Y" }}</span>
+		</div>
+	</div>
 </div>

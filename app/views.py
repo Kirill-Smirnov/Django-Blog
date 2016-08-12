@@ -14,10 +14,11 @@ class IndexView(ListView):
             "name": CONFIG.AUTHOR_NAME,
             "title": CONFIG.BLOG_NAME,
             "posts":  self.get_queryset(),
+            "searchQuery": self.search,
         }
 
     def dispatch(self, request, *args, **kwargs):
-        self.search = request.GET.get('search')
+        self.search = request.GET.get('search') or ''
 
         return super(IndexView, self).dispatch(request, *args, **kwargs)
 
@@ -48,8 +49,3 @@ class DeleteView(DeleteView):
     template_name = 'detail.html'
     model = Post
     success_url = '/'
-
-    # def get_queryset(self):
-    #     print self.request.user
-    #
-    #     return super(DeleteView, self).get_queryset()
