@@ -66,20 +66,25 @@
   .form input[type='text'], .form textarea {
     float: right;
     width: 70%;
-    font-size: 18px; }
+    font-size: 18px;
+    border-radius: none;
+    background-color: #fff;
+    border: #b8b8b8 solid 1px;
+    color: #333; }
   .form p:after {
     content: "";
     display: table;
     clear: both; }
 
-input[type='submit'], button {
-  height: 30px;
+button, input[type='submit'] {
+  height: 28px;
+  width: 65px;
   background-color: #dedede;
   border: #b8b8b8 solid 1px;
   cursor: pointer;
   font-weight: bold;
   transition: all 0.3s ease-in-out; }
-  input[type='submit']:hover, button:hover {
+  button:hover, input[type='submit']:hover {
     background-color: #b8b8b8; }
 
 @import url(https://fonts.googleapis.com/css?family=Open+Sans);
@@ -97,7 +102,8 @@ h1 {
 
 h1, h2 {
   margin: 0;
-  text-align: center; }
+  text-align: center;
+  font-weight: 300; }
 
 a {
   color: #2e2e2e; }
@@ -133,7 +139,9 @@ a {
 #search_form {
   margin: 10px auto;
   display: block; }
+  #search_form button {
+    width: 65px; }
   #search_form .search_field {
     float: left !important;
     height: 24px;
-    width: 90%; }
+    width: calc(100% - 65px - 5px); }

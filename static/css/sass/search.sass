@@ -1,8 +1,13 @@
+$btn-width: 65px
+
 #search_form
 	margin: 10px auto
 	display: block
 
+	button
+		width: $btn-width
+
 	.search_field
 		float: left !important
 		height: 24px
-		width: 90%
+		width: calc(100% - #{$btn-width} - 5px)

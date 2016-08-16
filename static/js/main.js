@@ -1,6 +1,8 @@
 window.Location.prototype.setHref = href => window.location.href = href;
 window.Location.prototype.redirectTo = pathname => window.location.pathname = pathname;
 
+var NodeListToArray = list => [].slice.call(list)
+
 class Post {
 	static delete(id, token) {
 		$.ajax({
@@ -18,13 +20,14 @@ class Post {
 
 (function() {
 	const posts = document.getElementsByClassName('post');
+	const postList = NodeListToArray(posts).reverse();
 
-	for (let post of posts) {
+	for (let post of postList) {
 		var deleteBtn = post.getElementsByClassName('post__delete')[0];
 		var id = post.getElementsByClassName('post__id')[0];
 
-		try {
+		if (deleteBtn)
 			deleteBtn.onclick = () => Post.delete(id.innerHTML, '');
-		} catch(e) {};
+		
 	}
 })();

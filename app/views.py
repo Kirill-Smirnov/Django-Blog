@@ -1,6 +1,9 @@
 from django.views.generic import ListView, DetailView, FormView, DeleteView
-from .models import Post
-from .forms import CreateForm
+from django.shortcuts import render
+from django.http import Http404
+
+from app.models import Post
+from app.forms import CreateForm
 
 from Blog import CONFIG
 
@@ -41,11 +44,21 @@ class CreateView(FormView):
     form_class = CreateForm
     success_url = '/'
 
+    def dispatch(self, request, *args, **kwargs):
+        if not (request.user.is_staff or request.user.is_superuser):
+
+            raise Http404
+
+        return super(CreateView, self).dispatch(request, *args, **kwargs)
+
     def form_valid(self, form):
-        form.save()
+        obj = form.save()
+        obj.user = self.request.user
+        obj.save()
         return super(CreateView, self).form_valid(form)
 
 class DeleteView(DeleteView):
     template_name = 'detail.html'
     model = Post
     success_url = '/'
+
