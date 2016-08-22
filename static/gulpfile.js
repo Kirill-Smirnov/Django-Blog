@@ -1,7 +1,8 @@
 const gulp    = require('gulp');
 // const jade 		= require('gulp-jade');
 const sass    = require('gulp-sass');
-const concat  = require('gulp-concat')
+const concat  = require('gulp-concat');
+const babel   = require('gulp-babel');
 
 // gulp.task('jade', () => {
 // 	return gulp.src('templates/*.jade')
@@ -19,6 +20,7 @@ gulp.task('sass', () => {
 gulp.task('js', () => {
 	return gulp.src('src/**/*.js')
 		.pipe(concat('all.js'))
+		.pipe(babel())
 		.pipe(gulp.dest('dist'))
 });
 
