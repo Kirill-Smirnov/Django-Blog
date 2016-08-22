@@ -62,7 +62,8 @@
   .form input[type='text'] {
     height: 20px; }
   .form textarea {
-    resize: none; }
+    resize: none;
+    padding: 1px 0; }
   .form input[type='text'], .form textarea {
     float: right;
     width: 70%;
