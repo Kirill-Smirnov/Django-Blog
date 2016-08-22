@@ -136,13 +136,14 @@ ENV/
 *.pyc
 __pycache__/
 local_settings.py
-db.sqlite3
+Blog/setting.py
 media
 
 ### VirtualEnv ###
 # Virtualenv
 # http://iamzed.com/2009/05/07/a-primer-on-virtualenv/
 .Python
+venv
 [Bb]in
 [Ii]nclude
 [Ll]ib

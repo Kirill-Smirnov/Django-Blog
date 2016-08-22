@@ -1,7 +1,6 @@
 const gulp    = require('gulp');
 // const jade 		= require('gulp-jade');
 const sass    = require('gulp-sass');
-// const ts      = require('gulp-typescript');
 const concat  = require('gulp-concat')
 
 // gulp.task('jade', () => {
@@ -11,25 +10,22 @@ const concat  = require('gulp-concat')
 // });
 
 gulp.task('sass', () => {
-	return gulp.src('css/sass/*.sass')
+	return gulp.src('src/sass/*.sass')
 		.pipe(sass())
 		.pipe(concat('main.css'))
-		.pipe(gulp.dest('css'));
+		.pipe(gulp.dest('dist'));
 });
 
-// gulp.task('ts', () => {
-// 	return gulp.src('**/*.ts')
-// 		.pipe(ts({
-// 			noImplicitAny: true,
-// 			out: 'all.js'
-// 		}))
-// 		.pipe(gulp.dest('js'));
-// });
+gulp.task('js', () => {
+	return gulp.src('src/**/*.js')
+		.pipe(concat('all.js'))
+		.pipe(gulp.dest('dist'))
+});
 
 gulp.task('watch', () => {
 	// gulp.watch('**/*.jade', ['jade']);
-	gulp.watch('css/sass/*.sass', ['sass']);
-	// gulp.watch('**/*.ts', ['ts']);
+	gulp.watch('src/sass/*.sass', ['sass']);
+	gulp.watch('src/**/*.js', ['js']);
 });
 
-gulp.task('default', ['sass', 'watch']);
+gulp.task('default', ['sass', 'js', 'watch']);

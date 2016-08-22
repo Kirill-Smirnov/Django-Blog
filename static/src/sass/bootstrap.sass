@@ -1,0 +1,19 @@
+.row
+	display: flex
+	flex-diretion: row
+
+.clearfix:after
+	content: ""
+	display: table
+	clear: both
+
+.clickable
+	cursor: pointer
+
+.col-*
+	margin: 0
+	padding: 0
+
+@for $i from 1 through 10
+	.col-#{$i}
+		width: $i * 10%
