@@ -20,14 +20,23 @@ class Post {
 
 (function() {
 	const posts = document.getElementsByClassName('post');
-	const postList = NodeListToArray(posts).reverse();
+	const postList = NodeListToArray(posts);
 
-	for (let post of postList) {
-		var deleteBtn = post.getElementsByClassName('post__delete')[0];
-		var id = post.getElementsByClassName('post__id')[0];
+	// for (let post of postList) {
+	// 	var deleteBtn = post.getElementsByClassName('post__delete')[0];
+	// 	var id = post.getElementsByClassName('post__id')[0];
+
+	// 	if (deleteBtn)
+	// 		deleteBtn.onclick = () => Post.delete(id.innerHTML, '');
+		
+	// }
+
+	postList.forEach((item, i, arr) => {
+		var deleteBtn = item.getElementsByClassName('post__delete')[0];
+		var id = item.getElementsByClassName('post__id')[0];
 
 		if (deleteBtn)
 			deleteBtn.onclick = () => Post.delete(id.innerHTML, '');
-		
-	}
+	});
+
 })();

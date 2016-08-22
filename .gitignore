@@ -60,6 +60,7 @@ lib64/
 parts/
 sdist/
 var/
+db.sqlite3
 *.egg-info/
 .installed.cfg
 *.egg

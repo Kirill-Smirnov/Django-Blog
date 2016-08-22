@@ -62,3 +62,6 @@ class DeleteView(DeleteView):
     model = Post
     success_url = '/'
 
+    def get_object(self, queryset=None):
+        obj = super(DeleteView, self).get_object()
+        return obj
