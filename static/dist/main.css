@@ -1,0 +1,148 @@
+.row {
+  display: flex;
+  flex-diretion: row; }
+
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+.clickable {
+  cursor: pointer; }
+
+.col-* {
+  margin: 0;
+  padding: 0; }
+
+.col-1 {
+  width: 10%; }
+
+.col-2 {
+  width: 20%; }
+
+.col-3 {
+  width: 30%; }
+
+.col-4 {
+  width: 40%; }
+
+.col-5 {
+  width: 50%; }
+
+.col-6 {
+  width: 60%; }
+
+.col-7 {
+  width: 70%; }
+
+.col-8 {
+  width: 80%; }
+
+.col-9 {
+  width: 90%; }
+
+.col-10 {
+  width: 100%; }
+
+
+/* Django generates the forms and I can't set any classes or IDs */
+.form {
+  margin: 0;
+  padding: 0; }
+  .form input[type='text'] {
+    height: 20px; }
+  .form textarea {
+    resize: none;
+    padding: 1px 0; }
+  .form input[type='text'], .form textarea {
+    float: right;
+    width: 70%;
+    font-size: 18px;
+    border-radius: none;
+    background-color: #fff;
+    border: #b8b8b8 solid 1px;
+    color: #333; }
+  .form p:after {
+    content: "";
+    display: table;
+    clear: both; }
+
+button, input[type='submit'] {
+  height: 28px;
+  width: 65px;
+  background-color: #dedede;
+  border: #b8b8b8 solid 1px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out; }
+  button:hover, input[type='submit']:hover {
+    background-color: #b8b8b8; }
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #f7f7f7;
+  color: #333;
+  font-family: 'Open Sans', sans-serif; }
+
+h1 {
+  font-size: 2.5em; }
+
+h1, h2 {
+  margin: 0;
+  text-align: center;
+  font-weight: 300; }
+
+a {
+  color: #2e2e2e; }
+
+.icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 0 3px;
+  background-size: cover;
+  background-position: center center; }
+  .icon.icon-close {
+    background-image: url("img/close.png"); }
+
+#wrapper {
+  width: 70%;
+  max-width: 900px;
+  height: 100%;
+  margin: 0 auto; }
+  #wrapper #greetings {
+    margin: 20px auto; }
+
+.post {
+  background-color: #dedede;
+  padding: 10px 20px;
+  box-shadow: 1px 1px 3px #333; }
+  .post h1.post__title {
+    text-decoration: underline;
+    text-align: left;
+    font-weight: normal;
+    display: inline; }
+  .post .post__time {
+    margin: 0 5px; }
+  .post .post__content {
+    margin: 15px 0; }
+  .post .post__tags {
+    margin: 0; }
+  .post .post__username {
+    text-align: right; }
+  .post .post__no_posts {
+    text-align: center; }
+
+#search_form {
+  margin: 10px auto;
+  display: block; }
+  #search_form button {
+    width: 65px; }
+  #search_form .search_field {
+    float: left !important;
+    height: 24px;
+    width: calc(100% - 65px - 5px); }
