@@ -20,7 +20,7 @@ gulp.task('sass', () => {
 gulp.task('js', () => {
 	return gulp.src('src/**/*.js')
 		.pipe(concat('all.js'))
-		.pipe(babel())
+		//.pipe(babel())
 		.pipe(gulp.dest('dist'))
 });
 

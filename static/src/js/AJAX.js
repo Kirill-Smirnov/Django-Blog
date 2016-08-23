@@ -2,36 +2,38 @@
 * Created by Kirill Smirnov
 */
 
+// const isRequestValid = (req) => req.status >= 200 && treq.status < 400;
+
+var setRequestHeaders = (req, headers) => {
+	for (let header in headers) {
+		req.setRequestHeader(header, headers[header]);
+	}
+	return req;
+}
 
 class AJAX {
 
 	static send(settings) {
-		const xhr = new XMLHttpRequest();
+		this.xhr = new XMLHttpRequest();
 
-		xhr.open(settings.method, settings.url, true);
+		this.xhr.open(settings.method, settings.url, true);
 		
 		if (settings.method === "POST") {
-			for (let header in settings.headers) {
-				xhr.setRequestHeader(header, settings.headers[header]);
-			}
+			this.xhr = setRequestHeaders(this.xhr, settings.headers);
 
-			xhr.send(settings.body)
+			this.xhr.send(settings.body);
 		}
 
-		else
-			xhr.send()
+		else {
+			this.xhr.send();
+		}
 
-		var response = this.isValid(xhr);
-
-		// if (!response.status) {
+		// if (!this.isValid()) {
 		// 	throw new Error(`server responsed ${response.code}`)
 		// }
 	}
 
-	static isValid(xhr) {
-		return {
-			status: xhr.status === 200,
-			code: xhr.status
-		};
+	static isValid() {
+		return this.xhr.status >= 200 && this.xhr < 400;
 	}
 }
