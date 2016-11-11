@@ -156,3 +156,4 @@ pyvenv.cfg
 pip-selfcheck.json
 
 app/migrations
+static/dist
