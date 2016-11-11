@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView, FormView, DeleteView
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404
 
 from app.models import Post
@@ -46,8 +46,8 @@ class CreateView(FormView):
 
     def dispatch(self, request, *args, **kwargs):
         if not (request.user.is_staff or request.user.is_superuser):
-
-            raise Http404
+            return redirect('/admin')
+            # raise Http404
 
         return super(CreateView, self).dispatch(request, *args, **kwargs)
 

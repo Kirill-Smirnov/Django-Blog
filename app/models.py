@@ -15,3 +15,9 @@ class Post(models.Model):
 
     def __unicode__(self):
         return self.title
+
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, related_name='comments', null=True)
+    name = models.CharField(max_length=1000)
+    text = models.TextField(max_length=1000)
