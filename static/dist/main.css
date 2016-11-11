@@ -136,6 +136,8 @@ a {
     text-align: right; }
   .post .post__no_posts {
     text-align: center; }
+  .post .author_and_date {
+    text-align: right; }
 
 #search_form {
   margin: 10px auto;

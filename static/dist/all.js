@@ -2,40 +2,36 @@
 * Created by Kirill Smirnov
 */
 
-// const isRequestValid = (req) => req.status >= 200 && treq.status < 400;
+const isRequestValid = (req) => req.status >= 200 && req.status < 400;
 
 var setRequestHeaders = (req, headers) => {
-	for (let header in headers) {
-		req.setRequestHeader(header, headers[header]);
-	}
-	return req;
+    for (let header in headers) {
+        req.setRequestHeader(header, headers[header]);
+    }
+    return req;
 }
 
 class AJAX {
 
-	static send(settings) {
-		this.xhr = new XMLHttpRequest();
+    static send(settings) {
+        this.xhr = new XMLHttpRequest();
 
-		this.xhr.open(settings.method, settings.url, true);
-		
-		if (settings.method === "POST") {
-			this.xhr = setRequestHeaders(this.xhr, settings.headers);
+        this.xhr.open(settings.method, settings.url, true);
+        
+        if (settings.method === "POST") {
+            this.xhr = setRequestHeaders(this.xhr, settings.headers);
 
-			this.xhr.send(settings.body);
-		}
+            this.xhr.send(settings.body);
+        }
 
-		else {
-			this.xhr.send();
-		}
+        else {
+            this.xhr.send();
+        }
 
-		// if (!this.isValid()) {
-		// 	throw new Error(`server responsed ${response.code}`)
-		// }
-	}
-
-	static isValid() {
-		return this.xhr.status >= 200 && this.xhr < 400;
-	}
+        if (!isRequestValid()) {
+            throw new Error(`server responsed ${response.code}`)
+        }
+    }
 }
 
 class Post {
@@ -64,19 +60,10 @@ class Post {
 window.Location.prototype.setHref = href => window.location.href = href;
 window.Location.prototype.redirectTo = pathname => window.location.pathname = pathname;
 
-var NodeListToArray = list => [].slice.call(list);
+const NodeListToArray = list => [].slice.call(list);
 
-;(function() {
-	const posts = document.getElementsByClassName('post');
-	const postList = NodeListToArray(posts);
-
-	postList.forEach((item, i, arr) => {
-		var deleteBtn = item.getElementsByClassName('post__delete')[0];
-		var id = item.getElementsByClassName('post__id')[0];
-
-		if (deleteBtn)
-			deleteBtn.onclick = () => Post.delete(id.innerHTML, '');
-	});
+;(function main() {
+	
 
 })();
 /*!

@@ -5,7 +5,7 @@
 			<a href="/post/{{ post.id }}">{{ post.title }}</a>
 		</h1>
 		{% if request.user.is_staff %}
-			<span class="icon icon-close clickable post__delete" ></span>
+			<span class="icon icon-close clickable post__delete" onclick="Post.delete({{post.id}})"></span>
 		{% endif %}
 	</div>
 	<p class="post__content">{{ post.content }}</p>
@@ -15,9 +15,13 @@
 				<span class="post__tag"><a href="/tag/{{ tag }}">{{ tag }}</a> </span>
 			{% endfor %}
 		</p>
-		<div class="col-4">
+		<div class="col-4 author_and_date">
 			<span class="post__username">By {{ post.user }}</span>
 			<span class="post__time">on {{ post.created_at|date:"d-m-Y" }}</span>
 		</div>
 	</div>
+
+	{% for comment in post.comments.all %}
+		{{ post }}
+	{% endfor %}
 </div>

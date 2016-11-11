@@ -154,3 +154,5 @@ venv
 pyvenv.cfg
 .venv
 pip-selfcheck.json
+
+app/migrations
