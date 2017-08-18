@@ -1,4 +1,4 @@
-class Post {
+export default class Post {
 	static delete(id, token) {
 		// $.ajax({
 		// 	url: `/delete/${id}/`,

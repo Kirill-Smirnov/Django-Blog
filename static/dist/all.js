@@ -1,71 +1,133 @@
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 /*
 * Created by Kirill Smirnov
 */
 
-const isRequestValid = (req) => req.status >= 200 && req.status < 400;
+var isRequestValid = function isRequestValid(req) {
+    return req.status >= 200 && req.status < 400;
+};
 
-var setRequestHeaders = (req, headers) => {
-    for (let header in headers) {
+var setRequestHeaders = function setRequestHeaders(req, headers) {
+    for (var header in headers) {
         req.setRequestHeader(header, headers[header]);
     }
     return req;
-}
+};
 
-class AJAX {
-
-    static send(settings) {
-        this.xhr = new XMLHttpRequest();
-
-        this.xhr.open(settings.method, settings.url, true);
-        
-        if (settings.method === "POST") {
-            this.xhr = setRequestHeaders(this.xhr, settings.headers);
-
-            this.xhr.send(settings.body);
-        }
-
-        else {
-            this.xhr.send();
-        }
-
-        if (!isRequestValid()) {
-            throw new Error(`server responsed ${response.code}`)
-        }
+var AJAX = function () {
+    function AJAX() {
+        _classCallCheck(this, AJAX);
     }
-}
 
-class Post {
-	static delete(id, token) {
-		// $.ajax({
-		// 	url: `/delete/${id}/`,
-		// 	csrfmiddlewaretoken: `${token}`,
-		// 	method: 'POST',
-		// 	headers: {
-		// 		"X-CSRFToken": $.cookie("csrftoken"),
-		// 	},
-		// });
+    _createClass(AJAX, null, [{
+        key: "send",
+        value: function send(settings) {
+            this.xhr = new XMLHttpRequest();
 
-		AJAX.send({
-			method: 'POST',
-			url: `/delete/${id}/`,
-			body: `csrfmiddlewaretoken=${token}`,
-			headers: {
-				"X-CSRFToken": Cookies.get("csrftoken"),
-			}
-		});
+            this.xhr.open(settings.method, settings.url, true);
 
-		window.location.redirectTo('/');
-	};
-}
-window.Location.prototype.setHref = href => window.location.href = href;
-window.Location.prototype.redirectTo = pathname => window.location.pathname = pathname;
+            if (settings.method === "POST") {
+                this.xhr = setRequestHeaders(this.xhr, settings.headers);
 
-const NodeListToArray = list => [].slice.call(list);
+                this.xhr.send(settings.body);
+            } else {
+                this.xhr.send();
+            }
 
-;(function main() {
-	
+            if (!isRequestValid()) {
+                throw new Error("server responsed " + response.code);
+            }
+        }
+    }]);
 
-})();
+    return AJAX;
+}();
+
+// export {setRequestHeaders, isRequestValid};
+
+
+exports.default = AJAX;
+"use strict";
+
+require("AJAX.js");
+
+require("Post.js");
+
+require("../libraries/cookie.js");
+
+window.Location.prototype.setHref = function (href) {
+	return window.location.href = href;
+};
+window.Location.prototype.redirectTo = function (pathname) {
+	return window.location.pathname = pathname;
+};
+
+var NodeListToArray = function NodeListToArray(list) {
+	return [].slice.call(list);
+};
+
+;(function main() {})();
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Post = function () {
+	function Post() {
+		_classCallCheck(this, Post);
+	}
+
+	_createClass(Post, null, [{
+		key: "delete",
+		value: function _delete(id, token) {
+			// $.ajax({
+			// 	url: `/delete/${id}/`,
+			// 	csrfmiddlewaretoken: `${token}`,
+			// 	method: 'POST',
+			// 	headers: {
+			// 		"X-CSRFToken": $.cookie("csrftoken"),
+			// 	},
+			// });
+
+			AJAX.send({
+				method: 'POST',
+				url: "/delete/" + id + "/",
+				body: "csrfmiddlewaretoken=" + token,
+				headers: {
+					"X-CSRFToken": Cookies.get("csrftoken")
+				}
+			});
+
+			window.location.redirectTo('/');
+		}
+	}]);
+
+	return Post;
+}();
+
+exports.default = Post;
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 /*!
  * JavaScript Cookie v2.0.3
  * https://github.com/js-cookie/js-cookie
@@ -73,10 +135,10 @@ const NodeListToArray = list => [].slice.call(list);
  * Copyright 2006, 2015 Klaus Hartl & Fagner Brack
  * Released under the MIT license
  */
-(function (factory) {
+var Cookies = function (factory) {
 	if (typeof define === 'function' && define.amd) {
 		define(factory);
-	} else if (typeof exports === 'object') {
+	} else if ((typeof exports === 'undefined' ? 'undefined' : _typeof(exports)) === 'object') {
 		module.exports = factory();
 	} else {
 		var _OldCookies = window.Cookies;
@@ -87,11 +149,11 @@ const NodeListToArray = list => [].slice.call(list);
 		};
 	}
 }(function () {
-	function extend () {
+	function extend() {
 		var i = 0;
 		var result = {};
 		for (; i < arguments.length; i++) {
-			var attributes = arguments[ i ];
+			var attributes = arguments[i];
 			for (var key in attributes) {
 				result[key] = attributes[key];
 			}
@@ -99,8 +161,8 @@ const NodeListToArray = list => [].slice.call(list);
 		return result;
 	}
 
-	function init (converter) {
-		function api (key, value, attributes) {
+	function init(converter) {
+		function api(key, value, attributes) {
 			var result;
 
 			// Write
@@ -130,13 +192,8 @@ const NodeListToArray = list => [].slice.call(list);
 				key = key.replace(/%(23|24|26|2B|5E|60|7C)/g, decodeURIComponent);
 				key = key.replace(/[\(\)]/g, escape);
 
-				return (document.cookie = [
-					key, '=', value,
-					attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
-					attributes.path    && '; path=' + attributes.path,
-					attributes.domain  && '; domain=' + attributes.domain,
-					attributes.secure ? '; secure' : ''
-				].join(''));
+				return document.cookie = [key, '=', value, attributes.expires && '; expires=' + attributes.expires.toUTCString(), // use expires attribute, max-age is not supported by IE
+				attributes.path && '; path=' + attributes.path, attributes.domain && '; domain=' + attributes.domain, attributes.secure ? '; secure' : ''].join('');
 			}
 
 			// Read
@@ -204,4 +261,6 @@ const NodeListToArray = list => [].slice.call(list);
 	}
 
 	return init();
-}));
+});
+
+exports.default = Cookies;

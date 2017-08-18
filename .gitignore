@@ -155,5 +155,6 @@ pyvenv.cfg
 .venv
 pip-selfcheck.json
 
-app/migrations
-static/dist
+*/migrations/
+static/dist/
+*/__pycache__/

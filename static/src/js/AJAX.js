@@ -33,3 +33,7 @@ class AJAX {
         }
     }
 }
+
+
+// export {setRequestHeaders, isRequestValid};
+export default AJAX;
